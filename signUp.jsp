@@ -13,12 +13,11 @@
 try {
 			String id = request.getParameter("id");			
 			String pw = request.getParameter("pass");
-			String city = request.getParameter("city");
 			
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "busking";
 		String passwd = "busking";
-		String s = "insert into USERS values(?,?,?)";
+		String s = "insert into USERS values(?,?)";
 		Connection conn;
 		PreparedStatement pstat;
 		
@@ -31,7 +30,6 @@ try {
 	pstat = conn.prepareStatement(s);		
 			pstat.setString(1,id);
 			pstat.setString(2,pw);
-			pstat.setString(3,city);
 			pstat.executeUpdate();
 			out.println("<data><result>true</result></data>");
 			
