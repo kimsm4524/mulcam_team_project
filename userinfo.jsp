@@ -1,16 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR" import="java.sql.*"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8" import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
 </head>
 <body>
 <%
-//jspÆÄÀÏ¿¡¼­ java code Àû´Â °÷
+//jspíŒŒì¼ì—ì„œ java code ì ëŠ” ê³³
 
 try {
+	request.setCharacterEncoding("utf-8");
 			String USER_ID = request.getParameter("USER_ID");			
 			String NAME = request.getParameter("NAME");
 			String NICKNAME = request.getParameter("NICKNAME");
@@ -22,6 +23,8 @@ try {
 			String SPOT0 = request.getParameter("SPOT0");
 			String SPOT1 = request.getParameter("SPOT1");
 			String SPOT2 = request.getParameter("SPOT2");
+			
+			System.out.println(GENRE0+SPOT0);
 	String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "busking";
 		String passwd = "busking";
@@ -30,12 +33,12 @@ try {
 		PreparedStatement pstat;
 		boolean logincheck=false;
 		
-			//1.jdbc driver µî·Ï
+			//1.jdbc driver ë“±ë¡
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			//2.connection °´Ã¼ ¾ò¾î³»±â(network ¿¬°á)
+			//2.connection ê°ì²´ ì–»ì–´ë‚´ê¸°(network ì—°ê²°)
 			conn = DriverManager.getConnection (url, user, passwd);
 			
-			//3.Statement°´Ã¼ ¾ò¾î³»±â(query ÇÏ³ª¸¦ ´ãÀ»¼ö ÀÖ´Â ±×¸©)
+			//3.Statementê°ì²´ ì–»ì–´ë‚´ê¸°(query í•˜ë‚˜ë¥¼ ë‹´ì„ìˆ˜ ìˆëŠ” ê·¸ë¦‡)
 			pstat = conn.prepareStatement(s);		
 			pstat.setString(1,USER_ID);
 			pstat.setString(2,NAME);
