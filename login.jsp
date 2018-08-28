@@ -20,6 +20,8 @@ try {
 		String user = "busking";
 		String passwd = "busking";
 		String s = "select user_pass from users where user_id=?";
+		String s2 = "select nickname from user_info where user_id=?";
+		String nickname="";
 		Connection conn;
 		PreparedStatement pstat;
 		boolean logincheck=false;
@@ -28,7 +30,7 @@ try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			//2.connection 객체 얻어내기(network 연결)
 			conn = DriverManager.getConnection (url, user, passwd);
-			
+		
 			//3.Statement객체 얻어내기(query 하나를 담을수 있는 그릇)
 			pstat = conn.prepareStatement(s);		
 			pstat.setString(1,id);
@@ -38,8 +40,17 @@ try {
 				if(rs.getString(1).equals(pw))
 					logincheck=true;
 			}
-			if(logincheck)
-				out.println("<data><result>true</result></data>");
+			pstat = conn.prepareStatement(s2);
+			pstat.setString(1,id);
+			ResultSet rs1 = pstat.executeQuery();
+			while(rs1.next())
+			{
+				nickname = rs1.getString(1);
+			}
+			if(logincheck){
+				out.println("<data><result>true</result>");
+				out.println("<nickname>"+nickname+"</nickname></data>");
+			}
 			else
 				out.println("<data><result>false</result></data>");
 			
