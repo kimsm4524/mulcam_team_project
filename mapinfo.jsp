@@ -22,8 +22,8 @@ try {
 			while(rs.next())
 			{
 				msg+="<data><TEAMNAME>"+rs.getString(1)+"</TEAMNAME><GENRE>"+rs.getString(2)+"</GENRE><INTRO>"
-						+rs.getString(3)+"</INTRO><TIME>"+rs.getTime(4)+"</TIME><LOCX>"+rs.getDouble(5)
-						+"</LOCX><LOCY>"+rs.getDouble(6)+"</LOCY></data>";
+						+rs.getString(3)+"</INTRO><STARTTIME>"+rs.getTime(4)+"</STARTTIME><LOCX>"+rs.getDouble(5)
+						+"</LOCX><LOCY>"+rs.getDouble(6)+"</LOCY><ENDTIME>"+rs.getTime(7)+"</ENDTIME></data>";
 			}
 			msg+="</root>";
 			out.println(msg);
